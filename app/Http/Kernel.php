@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use Spatie\Permission\Middleware\RoleMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -21,6 +22,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        \Inertia\Middleware::class,  // <-- Add this line
+
     ];
 
     /**
@@ -36,6 +39,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ],
 
         'api' => [
